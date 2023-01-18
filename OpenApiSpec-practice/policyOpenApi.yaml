@@ -1,0 +1,86 @@
+openapi: "3.0.2"
+info:
+  title: "New Insurance Policy"
+  description: "Get the current details of you insurance policy. The start date, end date, type of policy, and customer id are available for your reference. **Note**: This sample Swagger file covers the 'current' endpoints only for the New Insurance Policy API. <br><br/> **Note**: All parameters are optional, but you must select at least one parameter. Calling the API by policy_type will provide the most precise customer results. "
+  version: '1.0'
+  termsOfService: "https://newinsurancepolicy.org/terms"
+  contact:
+    name: "New Insurance Policy"
+    url: "https://.newinsurancepolicy.org/api"
+    email: "example@gmail.com"
+  license: 
+    name: "CC Attribution 3.0 (CC BY-CA 3.0)"
+    url: 'http://www.newinsurancepolicy.org/licenses/LICENSE-2.0.html'
+paths: 
+  /Start_date:
+    post: 
+      tags:
+        - Current insurance Date 
+      summary: "Call start date for a customer"
+      description: "Access the current start date detail of any customer"
+      operationId: "InsuranceStartDate"
+      parameters:
+        - $ref: "#/components/parameters/q"
+        - $ref: "#/components/parameters/id"
+        - $ref: "#/components/parameters/day"
+        - $ref: "#/components/parameters/month"
+        - $ref: "#/components/parameters/year"
+
+
+      responses:
+        200:
+          description: Successful response
+          content: 
+            application/json:
+              schema:
+                title: Sample
+                type: object
+                properties: 
+                  placeholder:
+                    type: string
+                    description: Placeholder description
+        400: 
+          description: No response found
+          content:
+            text/plain:
+              schema:
+                title: Start Date not found
+                type: string
+                example: Not found
+
+                
+
+components:
+  parameters:
+    q:
+      name: q
+      in: query 
+      description: "**Start Date**. *Example 22-04-2022*. The Api response with the list of results matching the search word."
+      schema:
+        type: string
+
+      id: 
+        name: id
+        in: query
+        description: "**Start Date**. *Example 22-04-2022*. The Api response with the list of results matching the search word."
+        schema:
+          type: string
+        
+      day: 
+        name: day
+        in: query
+        description: "**Day** *Example: 18* The day of your interest must use with 'month' and 'year'. "
+        schema:
+          type: string
+      
+      month:
+        name: month
+        in: query
+        description: "**Month** *Example: 04* The month of your interest must be used with 'day' and 'year'."
+        schema:
+          type: string
+      
+
+
+servers:
+- url: https://api.newinsurancepolicy.org/data/1.3/

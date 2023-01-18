@@ -1,0 +1,255 @@
+openapi: "3.0.2"
+info:
+  title: "New Insurance Policy"
+  description: "Get the current details of you insurance policy. The start date, end date, type of policy, and customer id are available for your reference. **Note**: This sample Swagger file covers the 'current' endpoints only for the New Insurance Policy API. <br><br/> **Note**: All parameters are optional, but you must select at least one parameter. Calling the API by policy_type will provide the most precise customer results. "
+  version: '1.0'
+  termsOfService: "https://newinsurancepolicy.org/terms"
+  contact:
+    name: "New Insurance Policy"
+    url: "https://.newinsurancepolicy.org/api"
+    email: "example@gmail.com"
+  license: 
+    name: "CC Attribution 3.0 (CC BY-CA 3.0)"
+    url: 'http://www.newinsurancepolicy.org/licenses/LICENSE-2.0.html'
+paths: 
+  /Start_date:
+    post: 
+      tags:
+        - Current insurance Detail 
+      summary: "Call start date for a customer"
+      description: "Create a start date detail of any customer"
+      operationId: "InsuranceStartDate"
+      parameters:
+        - $ref: "#/components/parameters/day"
+        - $ref: "#/components/parameters/month"
+        - $ref: "#/components/parameters/year"
+
+
+      responses:
+        200:
+          description: Successful response
+          content: 
+            application/json:
+              schema:
+                title: Sample
+                type: object
+                properties: 
+                  placeholder:
+                    type: string
+                    description: Placeholder description
+                    format: date
+        400: 
+          description: No response found
+          content:
+            text/plain:
+              schema:
+                title: Start Date not found
+                type: string
+                example: Not found
+
+                
+  /End_date:
+    post: 
+      tags:
+        - Current insurance Detail 
+      summary: "Call end date for a customer"
+      description: "Create a end date detail of any customer"
+      operationId: "InsuranceEndDate"
+      parameters:
+        - $ref: "#/components/parameters/day"
+        - $ref: "#/components/parameters/month"
+        - $ref: "#/components/parameters/year"
+
+
+      responses:
+        200:
+          description: Successful response
+          content: 
+            application/json:
+              schema:
+                title: Sample
+                type: object
+                properties: 
+                  placeholder:
+                    type: string
+                    description: Placeholder description
+                    format: date
+        400: 
+          description: No response found
+          content:
+            text/plain:
+              schema:
+                title: Start Date not found
+                type: string
+                example: Not found 
+
+         
+  
+  /Policy_type/cars:
+    post: 
+      tags:
+        - Current insurance Detail 
+      summary: "Call the car insurrance policy type for a customer"
+      description: "Create a car insurance policy of any customer"
+      operationId: "CarPolicyType"
+      requestBody:
+        description: "Sample API Request"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/carPolicy'
+        
+      responses:
+        200:
+          description: Successful response
+          content: 
+            application/json:
+              schema:
+                $ref: "#"
+                
+  /Policy_type/health:
+    post: 
+      tags:
+        - Current insurance Detail 
+      summary: "Call the health insurrance policy type for a customer"
+      description: "Create a health insurance policy of any customer"
+      operationId: "HealthPolicyType"
+      requestBody:
+        description: "Sample API Request"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/healthPolicy'
+        
+      responses:
+        200:
+          description: Successful response
+          content: 
+            application/json:
+              schema:
+                $ref: "#"          
+                
+  /Policy_type/gadget:
+    post: 
+      tags:
+        - Current insurance Detail 
+      summary: "Call the gadget insurrance policy type for a customer"
+      description: "Create a gadget insurance policy of any customer"
+      operationId: "gadgetPolicyType"
+      requestBody:
+        description: "Sample API Request"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gadgetPolicy'
+        
+      responses:
+        200:
+          description: Successful response
+          content: 
+            application/json:
+              schema:
+                $ref: "#"
+
+  /customer_id:
+    post: 
+      tags:
+        - Current insurance Detail 
+      summary: "Call the customer id for a customer"
+      description: "Create a customer id of any customer"
+      operationId: "customerId"
+      requestBody:
+        description: "**Customer Id**. *Example 281wtb5*. The Api response with the list of results matching the search word"
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customerId'
+        
+      responses:
+        200:
+          description: Successful response
+          content: 
+            application/json:
+              schema:
+                $ref: "#"       
+
+
+components:
+  parameters:
+    q:
+      name: q
+      in: query 
+      description: "**Start Date**. *Example 22-04-2022*. The Api response with the list of results matching the search word."
+      schema:
+        type: string
+
+    id: 
+        name: id
+        in: query
+        description: "**Start Date**. *Example 22-04-2022*. The Api response with the list of results matching the search word."
+        schema:
+          type: string
+        
+    day: 
+        name: day
+        in: query
+        description: "**Day** *Example: 18* The day of your interest must use with 'month' and 'year'. "
+        schema:
+          type: string
+      
+    month:
+        name: month
+        in: query
+        description: "**Month** *Example: 04* The month of your interest must be used with 'day' and 'year'."
+        schema:
+          type: string
+          
+    year:
+        name: year
+        in: query
+        description: "**Year** *Example: 2022* The Year of your interest must be used with the 'day' and 'month'. "
+        schema:
+          type: string
+      
+  schemas:
+     carPolicy:
+      type: object
+      properties:
+        url: 
+          type: string
+        
+     healthPolicy:
+      type: object
+      properties:
+        url:
+          type: string
+          
+     gadgetPolicy:
+        type: object
+        properties: 
+          url:
+            type: string
+      
+     customerId:
+      type: object
+      properties:
+        url:
+          type: string
+
+  securitySchemes:
+    app_id:
+      type: apiKey
+      description: API key to authorize requests.
+      name: appid
+      in: query
+
+
+security:
+- app_id: []
+
+servers:
+- url: https://api.newinsurancepolicy.org/data/1.3/
+
+externalDocs:
+  description: API Documentation
+  url: https://example.com/policy.org/api
